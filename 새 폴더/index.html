@@ -28,12 +28,25 @@
             </li>
 
             <li>
-              <a href="#">GitHub</a>
+              <div class="layer">
+                <a href="#layer" class="git">GitHub</a>
+            </div>
+              <div id="layer">
+                <div class="inner">
+                  <div class="cont">
+                    <div id="player" width="560" height="315" 
+                    >내용 추가</div>
+                  </div>
+                  <a href="#none" class="close">close</a>
+                </div>
+              </div>
+              <div class="dim">  
+              </div>      
             </li>
           </ul>
         </div>
       </div>
-     <div class="content wrap">
+     <div class="content-wrap">
        <section class="row ">
          <div class="box 1">
         <p>대전 확진자</p>
@@ -91,7 +104,33 @@
      </div>
       </section>
      </div>
-    </div>      
     </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+       $(function(){ 
+    var embed = $('#player'); //동영상 코드
+  
+    $('.git').on('click', function(){ //레이어 열때
+        var path = $(this).attr('href');
+        $('.cont').append(embed);
+        $(path).show();
+        $('.dim').show();
+    })
+  
+    $('.close').on('click', function(){ //레이어 닫을때
+        $(this).parents('#layer').hide();
+        $('.dim').hide();
+        $('.cont').empty();
+    })
+  
+  $('.dim').on('click', function(){
+    $(this).hide();
+    $('#layer').hide();
+    $('.cont').empty();
+  })
+  
+  });
+    </script>
   </body>
 </html>
