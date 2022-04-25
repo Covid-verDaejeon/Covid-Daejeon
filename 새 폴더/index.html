@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <title>CORONA LIVE</title>
   </head>
-  <script
-    src="https://kit.fontawesome.com/ec2e6610a2.js"
-    crossorigin="anonymous"
-  ></script>
   <body>
     <div class="container">
       <div class="covidbox">
@@ -26,22 +22,15 @@
             <li>
               <a href="#">Lo</a>
             </li>
-
             <li>
-              <div class="layer">
-                <a href="#layer" class="git">GitHub</a>
-            </div>
-              <div id="layer">
-                <div class="inner">
-                  <div class="cont">
-                    <div id="player" width="560" height="315" 
-                    >내용 추가</div>
+              <div class="video">
+                <a href="#" id="git">git</a>
+                <div class="pop-up" id="element_to_pop_up">
+                  <a class="b-close"><i style="position: relative; left: 3px; bottom: 4px;"
+                          class="fa-solid fa-circle-xmark"></i></a>
+                 <p>내용추가</p>
                   </div>
-                  <a href="#none" class="close">close</a>
-                </div>
-              </div>
-              <div class="dim">  
-              </div>      
+                  </div>
             </li>
           </ul>
         </div>
@@ -106,31 +95,31 @@
      </div>
     </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script
+    src="https://kit.fontawesome.com/ec2e6610a2.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="jquery.bpopup-0.10.0.min.js"></script>
     <script>
-       $(function(){ 
-    var embed = $('#player'); //동영상 코드
-  
-    $('.git').on('click', function(){ //레이어 열때
-        var path = $(this).attr('href');
-        $('.cont').append(embed);
-        $(path).show();
-        $('.dim').show();
-    })
-  
-    $('.close').on('click', function(){ //레이어 닫을때
-        $(this).parents('#layer').hide();
-        $('.dim').hide();
-        $('.cont').empty();
-    })
-  
-  $('.dim').on('click', function(){
-    $(this).hide();
-    $('#layer').hide();
-    $('.cont').empty();
-  })
-  
-  });
+      (function($) {
+           $(function() {
+               $('#git').bind('click', function(e) {
+           var self = $(this)
+           , content = $('.content'); 
+           $('element_to_pop_up').bPopup({
+               onOpen: function() {
+                   content.html(self.data('bpopup') || '');
+               },
+               onClose: function() {
+                   content.empty();
+               }
+           }); 
+                   e.preventDefault();
+                   $('#element_to_pop_up').bPopup();
+               });
+           });
+       })(jQuery);
     </script>
   </body>
 </html>
