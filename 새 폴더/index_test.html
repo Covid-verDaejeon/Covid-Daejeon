@@ -1,0 +1,107 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>CORONA LIVE</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="covidbox">
+      <div class="header">
+        <!-- div.logo -->
+        <div class="side-nav">
+          <div class="test" id="id"></div>
+          <div class="test2" id="test"></div>
+          <ul class="nav-links">
+            <li>
+              <a></i>CORONA LIVE</a>
+            </li>
+
+            <li>
+              <a href="#">대한민국</a>
+            </li>
+            <li id="git">
+              <div class="video">
+                <p>Git Hub</p>
+                <div class="pop-up" id="element_to_pop_up">
+                  <a class="b-close"><i style="position: relative; left: 3px; bottom: 4px;"
+                          class="fa-solid fa-circle-xmark"></i></a>
+                 <p>내용추가</p>
+                  </div>
+                  </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+     <div class="content-wrap">
+       <section class="row ">
+         <div class="box 1">
+        <p>확진자</p>
+        <p>''명</p>
+      </div>
+      <div class="box 2">
+        <p>사망자</p>
+        <p>''명</p>
+      </div>
+      
+       </section>
+
+     </div>
+    </div>
+    </div>
+    <script
+    src="https://kit.fontawesome.com/ec2e6610a2.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="jquery.bpopup-0.10.0.min.js"></script>
+    <script>
+      (function($) {
+           $(function() {
+               $('#git').bind('click', function(e) {
+           var self = $(this)
+           , content = $('.content'); 
+           $('element_to_pop_up').bPopup({
+               onOpen: function() {
+                   content.html(self.data('bpopup') || '');
+               },
+               onClose: function() {
+                   content.empty();
+               }
+           }); 
+                   e.preventDefault();
+                   $('#element_to_pop_up').bPopup();
+               });
+           });
+       })(jQuery);
+
+       $.ajax({
+            url : "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200110&endCreateDt=20220517",
+            type : "GET",
+            dataType : "xml",
+            success : function (xml){
+              // let rows = xml["items"]["totalCount"]
+              // for(let i=0; i<rows.length;i++){
+
+              // }
+                console.log(xml)
+                // $(xml).find('item').each(function(){ // xml 문서 item 기준으로 분리후 반복 
+                //   var deathCnt = $(this).find("deathCnt").text(); 
+                //   var decideCnt = $(this).find("decideCnt").text(); 
+                //   var view_text = deathCnt+ ' ,'+ decideCnt+' ,'; 
+                //   var test = deathCnt+", ";
+                //   // $("#id").append(view_text); // #id 에 view_text 삽입 
+                //   $("#test").append(test);
+                // });
+            },
+            // response는 파라미터라서 변경가능
+            error : function (){
+              alert("Error loading XML document");
+            },
+        });
+    </script>
+  </body>
+</html>
