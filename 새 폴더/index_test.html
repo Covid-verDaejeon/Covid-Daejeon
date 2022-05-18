@@ -66,10 +66,10 @@
               console.log(data);
               $(data).find('response').find("body").find("items").each(function(){
                 console.log($(this));
-                var createDt = $(this)[0].children[0].children[0].innerHTML;
-                var deathCnt = $(this)[0].children[0].children[1].innerHTML;
-                var deathCntpre = $(this)[0].children[1].children[1].innerHTML;
-                var decideCnt = $(this)[0].children[0].children[2].innerHTML;
+                var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
+                var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
+                var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 총사망자수
+                var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
                 console.log('날짜 :'+createDt);
                 console.log('누적 사망자 수 :'+deathCnt);
                 console.log('누적 확진자 수 :'+decideCnt);
