@@ -38,7 +38,7 @@
       </div>
      <div class="content-wrap">
        <section class="row ">
-         <div class="box 1">
+         <div class="box-1">
         <p>확진자</p>
         <p>''명</p>
       </div>
@@ -46,7 +46,6 @@
         <p>사망자</p>
         <p>''명</p>
       </div>
-      
        </section>
 
      </div>
@@ -59,45 +58,27 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="jquery.bpopup-0.10.0.min.js"></script>
     <script>
-      (function($) {
-           $(function() {
-               $('#git').bind('click', function(e) {
-           var self = $(this)
-           , content = $('.content'); 
-           $('element_to_pop_up').bPopup({
-               onOpen: function() {
-                   content.html(self.data('bpopup') || '');
-               },
-               onClose: function() {
-                   content.empty();
-               }
-           }); 
-                   e.preventDefault();
-                   $('#element_to_pop_up').bPopup();
-               });
-           });
-       })(jQuery);
-
        $.ajax({
             url : "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200110&endCreateDt=20220517",
             type : "GET",
             dataType : "xml",
-            success : function (xml){
-              // let rows = xml["items"]["totalCount"]
-              // for(let i=0; i<rows.length;i++){
-
-              // }
-                console.log(xml)
-                // $(xml).find('item').each(function(){ // xml 문서 item 기준으로 분리후 반복 
-                //   var deathCnt = $(this).find("deathCnt").text(); 
-                //   var decideCnt = $(this).find("decideCnt").text(); 
-                //   var view_text = deathCnt+ ' ,'+ decideCnt+' ,'; 
-                //   var test = deathCnt+", ";
-                //   // $("#id").append(view_text); // #id 에 view_text 삽입 
-                //   $("#test").append(test);
-                // });
+            success : function (data){
+              console.log(data);
+              $(data).find('response').find("body").find("items").each(function(){
+                console.log($(this));
+                var createDt = $(this)[0].children[0].children[0].innerHTML;
+                var deathCnt = $(this)[0].children[0].children[1].innerHTML;
+                var deathCntpre = $(this)[0].children[1].children[1].innerHTML;
+                var decideCnt = $(this)[0].children[0].children[2].innerHTML;
+                console.log('날짜 :'+createDt);
+                console.log('누적 사망자 수 :'+deathCnt);
+                console.log('누적 확진자 수 :'+decideCnt);
+                // var html = 
+                $(".box-1").append("<p>"+createDt.substring(0,10)+"</p>");
+                console.log(deathCntpre);
+                console.log("하루 확진자 : "+(deathCnt-deathCntpre));
+              });
             },
-            // response는 파라미터라서 변경가능
             error : function (){
               alert("Error loading XML document");
             },
