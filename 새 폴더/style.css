@@ -23,25 +23,45 @@
       width: 70%;
       padding: 15%;
     }
-    
-    .row {
+    .row1 {
+      display: flex;
       position: relative;
       left: 5%;
-      top: -25%;
+      top: -45%;
       margin-top: 50px;
-      display: flex;
       flex-direction:row;
       border: 1px solid transparent;
       box-shadow: 0px 0px 18px 0 #0000002c;
       border-radius: 15px;
-      padding: 75px;
-      
+      padding: 20px;
+    }
+    .row2 {
+      display: flex;
+      position: relative;
+      left: 5%;
+      top: -50%;
+      margin-top: 50px;
+      border: 1px solid transparent;
+      box-shadow: 0px 0px 18px 0 #0000002c;
+      border-radius: 15px;
+      padding: 50px; 
     }
     .box  {
       margin-right: 50px;
-    }
-    .box p {
       text-align: center;
+      justify-content: space-around;
+    }
+    .box p{
+      font-size: 25px;
+      position: relative;
+      left: 50%;
+      margin-left: 30px;
+    }
+    .definite p{
+      font-size: 20px;
+    }
+    .death p {
+      font-size: 20px;
     }
     .side-nav {
       width: 250px;
@@ -52,6 +72,30 @@
       background-color: transparent;
       padding: 20px 30px;
     }
+    .pop-up{ 
+      background-color:#fff;
+      border-radius:15px;
+      color:#000;
+      display:none; 
+      padding:20px;
+      min-width: 700px;
+      min-height: 500px;
+      margin-top: 20px;
+    }
+    .b-close{
+      cursor:pointer;
+      position:absolute;
+      right:10px;
+      top:5px;
+      }
+      .pop-up .b-close i{
+          font-size: 25px;
+      }
+      .content p{
+        position: relative;
+        left: 85%;
+        font-size: 30px;
+      }
     /*nav 관련*/
     .nav-links {
       list-style: none;
@@ -79,26 +123,6 @@
     }
     .nav-links li a i {
       font-size: 22px;
-
       margin-right: 20px;
-
     }
-    .pop-up{ 
-      background-color:#fff;
-      border-radius:15px;
-      color:#000;
-      display:none; 
-      padding:20px;
-      min-width: 700px;
-      min-height: 500px;
-      margin-top: 20px;
-    }
-    .b-close{
-      cursor:pointer;
-      position:absolute;
-      right:10px;
-      top:5px;
-      }
-      .pop-up .b-close i{
-          font-size: 25px;
-      }
+    
