@@ -2,9 +2,6 @@
           background: url(pexels-freestocksorg-449751.jpg);
           background-size: cover;
           background-color: transparent;
-
-
-     
         }
     * {
       box-sizing: border-box;
@@ -27,7 +24,7 @@
       display: flex;
       position: relative;
       left: 5%;
-      top: -45%;
+      /* top: -45%; */
       margin-top: 50px;
       flex-direction:row;
       border: 1px solid transparent;
@@ -39,12 +36,40 @@
       display: flex;
       position: relative;
       left: 5%;
-      top: -50%;
+      /* top: -50%; */
       margin-top: 50px;
       border: 1px solid transparent;
       box-shadow: 0px 0px 18px 0 #0000002c;
       border-radius: 15px;
       padding: 50px; 
+    }
+    .row3{
+      /* display: flex; */
+      position: relative;
+      left: 5%;
+      /* top: -50%; */
+      margin-top: 50px;
+      border: 1px solid transparent;
+      box-shadow: 0px 0px 18px 0 #0000002c;
+      border-radius: 15px;
+      padding: 50px;       
+    }
+    .row3 h1{
+      text-align: center;
+    }
+    .row3-box1{
+      text-align: center;
+    }
+    .row3-box1 select{
+      margin: 5%;
+    }
+    .row3-box2{
+      display: flex;
+      justify-content: space-around;
+    }
+    .row3-box2 div div{
+      border: 1px solid black;
+      /* 체크용. 데이터 받고서 지울 예정 */
     }
     .box  {
       margin-right: 50px;
