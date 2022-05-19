@@ -25,7 +25,7 @@
               </li>
               <li id="git">
                 <div class="video">
-                  <p>Git Hub</p>
+                  <a href="#">Git Hub</a>
                   <div class="pop-up" id="element_to_pop_up">
                     <a class="b-close"><i style="position: relative; left: 3px; bottom: 4px;"
                             class="fa-solid fa-circle-xmark"></i></a>
@@ -59,60 +59,60 @@
                 <div class="row3-box1">
                   <select id="year">
                     <option value="">-- 년도 선택 --</option>
-                    <option value="">2020</option>
-                    <option value="">2021</option>
-                    <option value="">2022</option>
+                    <option value="20">2020</option>
+                    <option value="21">2021</option>
+                    <option value="22">2022</option>
                   </select>
-                  <h3>년</h3> <!-- selectbox 옆으로 옮기고 싶은데 안 옮겨짐.. -->
                   <select id="month">
                     <option value="">-- 월 선택 --</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
-                    <option value="">10</option>
-                    <option value="">11</option>
-                    <option value="">12</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
                   </select>
                   <select id="date">
                     <option value="">-- 일 선택 --</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
-                    <option value="">10</option>
-                    <option value="">11</option>
-                    <option value="">12</option>
-                    <option value="">13</option>
-                    <option value="">14</option>
-                    <option value="">15</option>
-                    <option value="">16</option>
-                    <option value="">17</option>
-                    <option value="">18</option>
-                    <option value="">19</option>
-                    <option value="">20</option>
-                    <option value="">21</option>
-                    <option value="">22</option>
-                    <option value="">23</option>
-                    <option value="">24</option>
-                    <option value="">25</option>
-                    <option value="">26</option>
-                    <option value="">27</option>
-                    <option value="">28</option>
-                    <option value="">29</option>
-                    <option value="">30</option>
-                    <option value="">31</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
                   </select>
+                  <button>조회</button>
                 </div>
                 <div class="row3-box2">
                   <div class="decideBox">
@@ -125,7 +125,6 @@
                   </div>
                 </div>
               </div>
-              <button>조회</button>
             </div>
           </section>
         </div>
@@ -138,33 +137,33 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="jquery.bpopup-0.10.0.min.js"></script>
     <script>
-      //  $.ajax({
-      //       url : "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200110&endCreateDt=20220517",
-      //       type : "GET",
-      //       dataType : "xml",
-      //       success : function (data){
-      //         console.log(data);
-      //         $(data).find('response').find("body").find("items").each(function(){
-      //           console.log($(this));
-      //           var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
-      //           var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
-      //           var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 총사망자수
-      //           var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
-      //           console.log('날짜 :'+createDt);
-      //           console.log('누적 사망자 수 :'+deathCnt);
-      //           console.log('누적 확진자 수 :'+decideCnt);
-      //           // var html = 
-      //           $(".content").append("<p>"+createDt.substring(0,10)+"</p>");
-      //           $(".definite").append("<p>"+decideCnt+"명"+"</p>");
-      //           $(".death").append("<p>"+deathCnt+"명"+"</p>");
-      //           console.log(deathCntpre);
-      //           console.log("하루 확진자 : "+(deathCnt-deathCntpre));
-      //         });
-      //       },
-      //       error : function (){
-      //         alert("Error loading XML document");
-      //       },
-      //   });
+       $.ajax({
+            url : "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200110&endCreateDt=20220517",
+            type : "GET",
+            dataType : "xml",
+            success : function (data){
+              console.log(data);
+              $(data).find('response').find("body").find("items").each(function(){
+                console.log($(this));
+                var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
+                var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
+                var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 총사망자수
+                var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
+                console.log('날짜 :'+createDt);
+                console.log('누적 사망자 수 :'+deathCnt);
+                console.log('누적 확진자 수 :'+decideCnt);
+                // var html = 
+                $(".content").append("<p>"+createDt.substring(0,10)+"</p>");
+                $(".definite").append("<p>"+decideCnt+"명"+"</p>");
+                $(".death").append("<p>"+deathCnt+"명"+"</p>");
+                console.log(deathCntpre);
+                console.log("하루 확진자 : "+(deathCnt-deathCntpre));
+              });
+            },
+            error : function (){
+              alert("Error loading XML document");
+            },
+        });
     </script>
   </body>
 </html>
