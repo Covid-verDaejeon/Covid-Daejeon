@@ -152,8 +152,8 @@
           type: "GET",
           dataType: "xml",
           success: function (data) {
-            console.log(totalDate);
-            console.log(data);
+            // console.log(totalDate);
+            // console.log(data);
             $(data)
               .find("response")
               .find("body")
@@ -161,6 +161,21 @@
               .each(function () {
                 console.log($(this));
                 var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
+                console.log($(this)[0].children[0].children.length);
+                var length = $(this)[0].children[0].children.length;
+                for(var i=0; i<length; i++){
+                  var test = $(this)[0].children[0].children[i]
+                  console.log(test);
+                  // if(test.getElementsByTagName("stateDt")){
+                  //   console.log("우리가 찾는거 : "+test.innerHTML);
+                  // }
+                  // if((test.getElementsByTagName("stateDt"))){
+                    // console.log('=====>')
+                  if(test.innerHTML == totalDate){
+                    console.log('--------->'+test.innerHTML)
+                  }
+                }
+                // }
                 var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
                 var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 기준 총 사망자수
                 var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
@@ -180,7 +195,7 @@
                 $(".todayDecide").append(
                   "<p>" + (decideCnt - decide) + "명" + "</p>"
                 );
-                console.log(deathCntpre);
+                // console.log("전날 사망자 : "+deathCntpre);
                 console.log("하루 사망자 : " + (deathCnt - deathCntpre));
               });
           },
