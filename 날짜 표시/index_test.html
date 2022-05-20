@@ -137,44 +137,57 @@
     ></script>
     <script src="jquery.bpopup-0.10.0.min.js"></script>
     <script>
-      $.ajax({
-        url: "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200110&endCreateDt=20220518",
-        type: "GET",
-        dataType: "xml",
-        success: function (data) {
-          console.log(data);
-          $(data)
-            .find("response")
-            .find("body")
-            .find("items")
-            .each(function () {
-              console.log($(this));
-              var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
-              var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
-              var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 기준 총 사망자수
-              var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
-              var decide = $(this)[0].children[1].children[2].innerHTML; //전날 기준 총 확진자수
+      var totalDate;
+      $("button").click(function () {
+        var year = $("#year option:selected").val();
+        var month = $("#month option:selected").val();
+        var date = $("#date option:selected").val();
+        totalDate = year + month + date;
+        console.log(totalDate);
 
-              console.log("날짜 :" + createDt);
-              console.log("누적 사망자 수 :" + deathCnt);
-              console.log("누적 확진자 수 :" + decideCnt);
-              // var html =
-              $(".content").append("<p>" + createDt.substring(0, 10) + "</p>");
-              $(".decideByDate").append("<p>" + decideCnt + "명" + "</p>");
-              $(".deathByDate").append("<p>" + deathCnt + "명" + "</p>");
-              $(".todayDeath").append(
-                "<p>" + (deathCnt - deathCntpre) + "명" + "</p>"
-              );
-              $(".todayDecide").append(
-                "<p>" + (decideCnt - decide) + "명" + "</p>"
-              );
-              console.log(deathCntpre);
-              console.log("하루 사망자 : " + (deathCnt - deathCntpre));
-            });
-        },
-        error: function () {
-          alert("Error loading XML document");
-        },
+        $.ajax({
+          url:
+            "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200110&endCreateDt=" +
+            totalDate,
+          type: "GET",
+          dataType: "xml",
+          success: function (data) {
+            console.log(totalDate);
+            console.log(data);
+            $(data)
+              .find("response")
+              .find("body")
+              .find("items")
+              .each(function () {
+                console.log($(this));
+                var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
+                var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
+                var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 기준 총 사망자수
+                var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
+                var decide = $(this)[0].children[1].children[2].innerHTML; //전날 기준 총 확진자수
+                console.log("날짜 :" + createDt);
+                console.log("누적 사망자 수 :" + deathCnt);
+                console.log("누적 확진자 수 :" + decideCnt);
+                // var html =
+                $(".content").append(
+                  "<p>" + createDt.substring(0, 10) + "</p>"
+                );
+                $(".decideByDate").append("<p>" + decideCnt + "명" + "</p>");
+                $(".deathByDate").append("<p>" + deathCnt + "명" + "</p>");
+                $(".todayDeath").append(
+                  "<p>" + (deathCnt - deathCntpre) + "명" + "</p>"
+                );
+                $(".todayDecide").append(
+                  "<p>" + (decideCnt - decide) + "명" + "</p>"
+                );
+                console.log(deathCntpre);
+                console.log("하루 사망자 : " + (deathCnt - deathCntpre));
+              });
+          },
+          error: function () {
+            alert("Error loading XML document");
+          },
+        });
       });
     </script>
     <script>
