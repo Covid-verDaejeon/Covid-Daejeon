@@ -46,60 +46,18 @@
             <div class="row3-bigbox">
               <div class="row3-col-box">
                 <div class="row3-box1">
-                  <select id="year">
-                    <option value="">-- 년도 선택 --</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022" selected>2022</option>
+                  <select id="year" onchange="javascript:lastday();">
+                    <!-- 변경이 될 때마다 lastday() 함수 실행 -->
+                    <!-- 아래 스크립트로 아래와 같은 태그 생성될 것임 -->
+                    <!-- <option value="2020">2020</option> -->
                   </select>
-                  <select id="month">
-                    <option value="">-- 월 선택 --</option>
-                    <option value="01">1</option>
-                    <option value="02">2</option>
-                    <option value="03">3</option>
-                    <option value="04">4</option>
-                    <option value="05" selected>5</option>
-                    <option value="06">6</option>
-                    <option value="07">7</option>
-                    <option value="08">8</option>
-                    <option value="09">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
+                  <select id="month" onchange="javascript:lastday();">
+                    <!-- 아래 스크립트로 아래와 같은 태그 생성될 것임 -->
+                    <!-- <option value="01">1</option> -->
                   </select>
-                  <select id="date">
-                    <option value="">-- 일 선택 --</option>
-                    <option value="01">1</option>
-                    <option value="02">2</option>
-                    <option value="03">3</option>
-                    <option value="04">4</option>
-                    <option value="05">5</option>
-                    <option value="06">6</option>
-                    <option value="07">7</option>
-                    <option value="08">8</option>
-                    <option value="09">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18" selected>18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
+                  <select id="day">
+                    <!-- 아래 스크립트로 아래와 같은 태그 생성될 것임 -->
+                    <!-- <option value="01">1</option> -->
                   </select>
                   <button>조회</button>
                 </div>
@@ -137,18 +95,69 @@
       crossorigin="anonymous"
     ></script>
     <script src="jquery.bpopup-0.10.0.min.js"></script>
+    <script> 
+    // 오늘 날짜 기준으로 존재하는 년도와 월의 option 태그 추가
+      var start_year = "2020";// 시작 년도
+      var today = new Date(); // 오늘 날짜 Date 포맷으로 변환
+      var today_year = today.getFullYear(); // 오늘 날짜의 년도, 2022
+      var index = 0;
+      console.log(today.getDate())
+      for(var y = start_year; y <= today_year; y++){ // 시작년도부터 현재년도까지 option태그 추가
+        if(y == today.getFullYear()){
+          document.getElementById('year').options[index] = new Option(y, y, true, true); // index는 0부터 시작한다
+        }else{
+          document.getElementById('year').options[index] = new Option(y, y);
+        }
+        // id가 year인 select 태그에 앞 y를 text로 가지고 뒤 y를 value로 가지는 option태그 추가
+        index++;
+      }
+      for(var m = 1; m <= 12; m++){ // 월(달) option 태그 추가
+        if(m == (today.getMonth()+1)){
+          document.getElementById('month').options[m-1] = new Option(m, ("00"+m).slice(-2), true, true); 
+          // m이 오늘 날짜에 해당하는 달이라면 true => selected 속성을 준다.
+        }else{
+          document.getElementById('month').options[m-1] = new Option(m, ("00"+m).slice(-2));
+        }
+      }
+      lastday(); // 아래 함수 실행
+      
+      // 선택한 년도와 월에 따라 마지막 날자를 구하는 함수
+      function lastday(){ 
+        var Year = document.getElementById('year').value; 
+        var Month = document.getElementById('month').value; 
+        var day = new Date(new Date(Year,Month,0)).getDate(); 
+        // new Date(Year,Month,0) = 해당 Year 해당 Month의 마지막 날.
+        // new Date(2022,1,0) = 22/01/31, new Date(2022,1,1) = 22/02/01
+        // month는 0부터 시작한다. 따라서 new Date(2022,0,1) = 22/01/01
+        var dayindex_len = document.getElementById('day').length; 
+        if(day > dayindex_len){ 
+          for(var i = 1; i <= day; i++){ // 1부터 day까지 option 추가
+            if(i == today.getDate()){
+              document.getElementById('day').options[i-1] = new Option(i, ("00"+i).slice(-2), true, true); // 0번째부터 추가
+            }else{
+              document.getElementById('day').options[i-1] = new Option(i, ("00"+i).slice(-2)); // 0번째부터 추가
+            }
+          } 
+        }
+        // else if(day < dayindex_len){ 
+        //   for(var i = dayindex_len; i >= day; i--){ 
+        //     document.getElementById('day').options[i]=null; 
+        //   } 
+        // }
+      } 
+    </script>
     <script>
       var totalDate;
       $("button").click(function () {
         // 선택된 날짜 구하기
         var year = $("#year option:selected").val();
         var month = $("#month option:selected").val();
-        var date = $("#date option:selected").val();
-        totalDate = year + month + date;
+        var day = $("#day option:selected").val();
+        totalDate = year + month + day;
         console.log("선택한 날짜 : "+totalDate);
 
         // 하루 전 날짜 구하기
-        var selectedParsedDate = Date.parse(year+"-"+month+"-"+date) // 선택된 날짜 밀리세컨드 변환
+        var selectedParsedDate = Date.parse(year+"-"+month+"-"+day) // 선택된 날짜 밀리세컨드 변환
         var preselectedParsedDate = selectedParsedDate - (3600000*24) // 전 날짜 밀리세컨드로 계산
         var preDate = new Date(preselectedParsedDate) // 전 날짜 밀리세컨드 -> 날짜 형식 변환
         var preDateMonth = ("00"+(preDate.getMonth()+1)).slice(-2) // getMonth는 0~11을 반환하기 때문에 +1 해주고, 00을 붙여서 뒤 2글자를 갖고 옴
