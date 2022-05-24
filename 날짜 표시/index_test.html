@@ -141,6 +141,7 @@
 
       // 선택한 년도와 월에 따라 마지막 날자를 구하는 함수
       function lastday() {
+        $('#day').children().remove(); // 오늘 날짜가 기본으로 들어있기 때문에 만들어진 day를 지우고 새로 만듦
         var Year = document.getElementById("year").value;
         var Month = document.getElementById("month").value;
         var day = new Date(new Date(Year, Month, 0)).getDate();
@@ -149,6 +150,7 @@
         // month는 0부터 시작한다. 따라서 new Date(2022,0,1) = 22/01/01
         var dayindex_len = document.getElementById("day").length;
         console.log(day);
+        console.log(dayindex_len);
         if (day > dayindex_len) {
           for (var i = 1; i <= day; i++) {
             // 1부터 day까지 option 추가
@@ -167,11 +169,6 @@
             }
           }
         }
-        // else if(day < dayindex_len){
-        //   for(var i = dayindex_len; i >= day; i--){
-        //     document.getElementById('day').options[i]=null;
-        //   }
-        // }
       }
     </script>
     <script>
