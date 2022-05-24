@@ -46,7 +46,7 @@
         <div class="content-wrap">
           <section class="row3">
             <h1>날짜별 확진자, 사망자</h1>
-            <h3>조회 가능한 날짜 : 2020년 01월 20일 ~ 오늘</h3>
+            <h3>2020년 01월 20일부터 조회가능</h3>
             <div class="row3-bigbox">
               <div class="row3-col-box">
                 <div class="row3-box1">
@@ -148,6 +148,7 @@
         // new Date(2022,1,0) = 22/01/31, new Date(2022,1,1) = 22/02/01
         // month는 0부터 시작한다. 따라서 new Date(2022,0,1) = 22/01/01
         var dayindex_len = document.getElementById("day").length;
+        console.log(day);
         if (day > dayindex_len) {
           for (var i = 1; i <= day; i++) {
             // 1부터 day까지 option 추가
