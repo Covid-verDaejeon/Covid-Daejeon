@@ -46,11 +46,11 @@
        </section>
        <section class="row2">
           <div class="box">
-          <p>확진자</p>
+          <p>누적 확진자</p>
             <div class="definite"></div>
           </div>
           <div class="box">
-          <p>사망자</p>
+          <p>누적 사망자</p>
             <div class="death"></div>
           </div>
           <div class="box">
@@ -183,12 +183,12 @@
                 var percent = (deathCnt/decideCnt);
                
                 // var html = 
-                $(".content").append("<p>"+createDt.substring(0,10)+"</p>");
-                $(".definite").append("<p>"+decideCnt+"명"+"</p>");
-                $(".death").append("<p>"+deathCnt+"명"+"</p>");
-                $(".definye").append("<p>"+(decideCnt-decideCntpre)+"명"+"</p>");
-                $(".deathye").append("<p>"+(deathCnt-deathCntpre)+"명"+"</p>")
-                $(".pecent").append("<p>"+percent.toFixed(3)+"%"+"</p>")
+                $(".content").append("<p>"+createDt.substring(0,10)+"</p>"); //날짜
+                $(".definite").append("<p>"+Number(decideCnt).toLocaleString('ko-KR')+"명"+"</p>"); //누적 확진자
+                $(".death").append("<p>"+Number(deathCnt).toLocaleString('ko-KR')+"명"+"</p>"); //누적 사망자
+                $(".definye").append("<p>"+Number((decideCnt-decideCntpre)).toLocaleString('ko-KR')+"명"+"</p>"); //전날 확진자
+                $(".deathye").append("<p>"+Number((deathCnt-deathCntpre)).toLocaleString('ko-KR')+"명"+"</p>") //전날 사망자
+                $(".pecent").append("<p>"+percent.toFixed(3)+"%"+"</p>") //사망률
                 console.log(deathCntpre);
                 console.log("하루 확진자 : "+(deathCnt-deathCntpre));
               });
