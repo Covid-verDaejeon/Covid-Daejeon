@@ -207,10 +207,18 @@
             .each(function () {
               // 갖고온 data 안의 repsponse > body > items > item의 각 요소에 대해서 함수를 수행해라
               // console.log($(this));
-                if(totalDate < 20200120){
+              var StringToday = String(today.getFullYear())+("00" +String(today.getMonth()+1)).slice(-2)+String(today.getDate());
+              console.log(StringToday)
+                if(totalDate < 20200120 || totalDate > StringToday){
                   alert("조회가능한 날짜가 아닙니다.")
+                  $(".todayDecide").empty();
+                  $(".todayDeath").empty();
                   return 0;
                 }
+                // if(totalDate > StringToday){
+                //   alert("조회가능한 날짜가 아닙니다.")
+                //   return 0;
+                // }
                 var selectedDateData = $(this)[0].children[0].children;
                 if (StringPreDate >= 20200120) {
                   // 데이터가 2020-01-20일 이후부터 존재하기 때문에 전날 데이터도 데이터가 존재하는 날짜 이후로 설정
