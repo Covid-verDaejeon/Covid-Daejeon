@@ -63,7 +63,7 @@ body {
 }
 .row3-box1 {
   text-align: center;
-  border: 3px solid;
+  /* border: 3px solid; */
 }
 .row3-box1 select {
   margin: 2%;
@@ -78,8 +78,10 @@ body {
   font-size: 3px;
 }
 .row3-box2 div div p{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* 체크용. 데이터 받고서 지울 예정 */
+  font-size: 20px;
+  margin-top: 10%;
 }
 .box {
   margin-right: 50px;
@@ -103,9 +105,11 @@ button {
 }
 .decideBox p{
   text-align: center;
+  font-size: 30px;
 }
 .deathBox p{
   text-align: center;
+  font-size: 30px;
 }
 
 
