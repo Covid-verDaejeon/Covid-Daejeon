@@ -141,7 +141,7 @@
 
       // 선택한 년도와 월에 따라 마지막 날자를 구하는 함수
       function lastday() {
-        $('#day').children().remove(); // 오늘 날짜가 기본으로 들어있기 때문에 만들어진 day를 지우고 새로 만듦
+        $("#day").children().remove(); // 오늘 날짜가 기본으로 들어있기 때문에 만들어진 day를 지우고 새로 만듦
         var Year = document.getElementById("year").value;
         var Month = document.getElementById("month").value;
         var day = new Date(new Date(Year, Month, 0)).getDate();
@@ -189,28 +189,31 @@
         var preDateDay = ("00" + preDate.getDate()).slice(-2);
         var StringPreDate = preDate.getFullYear() + preDateMonth + preDateDay; // 하루 전 날짜를 string으로 변환
         console.log("하루 전 날짜 : " + StringPreDate);
-        
+
         $.ajax({
           url:
-          "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=" +
-          StringPreDate +
-          "&endCreateDt=" +
-          totalDate,
+            "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=" +
+            StringPreDate +
+            "&endCreateDt=" +
+            totalDate,
           type: "GET",
           dataType: "xml",
           success: function (data) {
             // console.log(data);
             $(data)
-            .find("response")
-            .find("body")
-            .find("items")
-            .each(function () {
-              // 갖고온 data 안의 repsponse > body > items > item의 각 요소에 대해서 함수를 수행해라
-              // console.log($(this));
-              var StringToday = String(today.getFullYear())+("00" +String(today.getMonth()+1)).slice(-2)+String(today.getDate());
-              console.log(StringToday)
-                if(totalDate < 20200120 || totalDate > StringToday){
-                  alert("조회가능한 날짜가 아닙니다.")
+              .find("response")
+              .find("body")
+              .find("items")
+              .each(function () {
+                // 갖고온 data 안의 repsponse > body > items > item의 각 요소에 대해서 함수를 수행해라
+                // console.log($(this));
+                var StringToday =
+                  String(today.getFullYear()) +
+                  ("00" + String(today.getMonth() + 1)).slice(-2) +
+                  String(today.getDate());
+                console.log(StringToday);
+                if (totalDate < 20200120 || totalDate > StringToday) {
+                  alert("조회가능한 날짜가 아닙니다.");
                   $(".todayDecide").empty();
                   $(".todayDeath").empty();
                   return 0;
@@ -250,7 +253,6 @@
                   }
                 }
                 if (StringPreDate >= 20200120) {
-                  
                   for (var i = 0; i < preDateData.length; i++) {
                     if (preDateData[i].tagName === "stateDt") {
                       preDateStateDt = preDateData[i].innerHTML;
@@ -350,5 +352,35 @@
         });
       })(jQuery);
     </script> -->
+    <script>
+      var totalDate;
+      $("button").click(function () {
+        // 선택된 날짜 구하기
+        var year = $("#year option:selected").val();
+        var month = $("#month option:selected").val();
+        var day = $("#day option:selected").val();
+        totalDate = year + month + day;
+        console.log("선택한 날짜 : " + totalDate);
+
+        $.ajax({
+          url:
+            "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=oTqM%2BQ3%2FyOFY1vA4Ue9V5pHJZM75zW1WV1%2F1LqRLUTd%2Bl%2F48xphlhUJ85Ogne3Vb9vgMFjbR4Civq2zCZb0fag%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200310&" +
+            totalDate,
+          type: "GET",
+          dataType: "xml",
+          success: function (data) {
+            // console.log(data);
+            $(data)
+              .find("response")
+              .find("body")
+              .find("items")
+              .each(function () {
+                var tempData = $(this)[0].children[0].children[2].innerHTML; //누적 사망자
+                console.log("===>" + tempData);
+              });
+          },
+        });
+      });
+    </script>
   </body>
 </html>
