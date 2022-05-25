@@ -189,24 +189,28 @@
         var preDateDay = ("00" + preDate.getDate()).slice(-2);
         var StringPreDate = preDate.getFullYear() + preDateMonth + preDateDay; // 하루 전 날짜를 string으로 변환
         console.log("하루 전 날짜 : " + StringPreDate);
-
+        
         $.ajax({
           url:
-            "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=" +
-            StringPreDate +
-            "&endCreateDt=" +
-            totalDate,
+          "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=eQZma%2BIrvJVJ%2FoYjIe5wYTnAwUZYZNAM5v%2BtmC8hutkmQ%2BFFsfQt5gbWiZ0FNXRs3LK%2BHxQ3oLQji3lZ%2BiLgKA%3D%3D&pageNo=1&numOfRows=10&startCreateDt=" +
+          StringPreDate +
+          "&endCreateDt=" +
+          totalDate,
           type: "GET",
           dataType: "xml",
           success: function (data) {
             // console.log(data);
             $(data)
-              .find("response")
-              .find("body")
-              .find("items")
-              .each(function () {
-                // 갖고온 data 안의 repsponse > body > items > item의 각 요소에 대해서 함수를 수행해라
-                // console.log($(this));
+            .find("response")
+            .find("body")
+            .find("items")
+            .each(function () {
+              // 갖고온 data 안의 repsponse > body > items > item의 각 요소에 대해서 함수를 수행해라
+              // console.log($(this));
+                if(totalDate < 20200120){
+                  alert("조회가능한 날짜가 아닙니다.")
+                  return 0;
+                }
                 var selectedDateData = $(this)[0].children[0].children;
                 if (StringPreDate >= 20200120) {
                   // 데이터가 2020-01-20일 이후부터 존재하기 때문에 전날 데이터도 데이터가 존재하는 날짜 이후로 설정
@@ -238,6 +242,7 @@
                   }
                 }
                 if (StringPreDate >= 20200120) {
+                  
                   for (var i = 0; i < preDateData.length; i++) {
                     if (preDateData[i].tagName === "stateDt") {
                       preDateStateDt = preDateData[i].innerHTML;
