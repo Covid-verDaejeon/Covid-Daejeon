@@ -143,11 +143,14 @@
           );
         }
       }
+
+      var preday;
       lastday(); // 아래 함수 실행
 
       // 선택한 년도와 월에 따라 마지막 날자를 구하는 함수
       function lastday() {
-        $("#day").children().remove(); // 오늘 날짜가 기본으로 들어있기 때문에 만들어진 day를 지우고 새로 만듦
+        preday = document.getElementById("day").value;
+        // $("#day").children().remove(); // 오늘 날짜가 기본으로 들어있기 때문에 만들어진 day를 지우고 새로 만듦
         var Year = document.getElementById("year").value;
         var Month = document.getElementById("month").value;
         var day = new Date(new Date(Year, Month, 0)).getDate();
@@ -159,23 +162,20 @@
         console.log(dayindex_len);
         if (day > dayindex_len) {
           for (var i = 1; i <= day; i++) {
-            // 1부터 day까지 option 추가
-            if (i == today.getDate()) {
-              document.getElementById("day").options[i - 1] = new Option(
-                i,
-                ("00" + i).slice(-2),
-                true,
-                true
-              ); // 0번째부터 추가
-            } else {
               document.getElementById("day").options[i - 1] = new Option(
                 i,
                 ("00" + i).slice(-2)
-              ); // 0번째부터 추가
-            }
+              ); 
+          }
+        }else if(day < dayindex_len){ // lastday() 함수가 실행될 때마다 day가 바뀌는데 기존에 있던 day의 길이보다 day가 작다면 그 차이만큼 지워주는 로직
+          for(var i = dayindex_len; i >= day; i--){
+              document.getElementById('day').options[i]=null;
           }
         }
+        $('#day').val(preday).prop('selected', true);
       }
+      var todayDate = (new Date()).getDate();
+      $('#day').val(todayDate).prop('selected', true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
     </script>
     <script>
       var totalDate;
