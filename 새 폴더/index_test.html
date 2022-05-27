@@ -148,7 +148,7 @@
     <script src="jquery.bpopup-0.10.0.min.js"></script>
     <script>
      let today = new Date();
-      console.log(today);
+      // console.log(today);
       // 년도 getFullYear()
 
       let year = today.getFullYear(); 
@@ -167,19 +167,19 @@
             type : "GET",
             dataType : "xml",
             success : function (data){
-              console.log(data);
+              // console.log(data);
               $(data).find('response').find("body").find("items").each(function(){
-                console.log($(this));
+                // console.log($(this));
                 var createDt = $(this)[0].children[0].children[0].innerHTML; //날짜
                 var deathCnt = $(this)[0].children[0].children[1].innerHTML; //총 사망수
                 var deathCntpre = $(this)[0].children[1].children[1].innerHTML; //전날 총사망자수
                 var decideCnt = $(this)[0].children[0].children[2].innerHTML; //총 확진자수
                 var decideCntpre = $(this)[0].children[1].children[2].innerHTML;//전날 확진자수
-                console.log('날짜 :'+createDt);
-                console.log('누적 사망자 수 :'+deathCnt);
-                console.log('누적 확진자 수 :'+decideCnt);
-                console.log('전날 확진자 :'+decideCntpre);
-                console.log('사망률 :'+(deathCnt/decideCnt));
+                // console.log('날짜 :'+createDt);
+                // console.log('누적 사망자 수 :'+deathCnt);
+                // console.log('누적 확진자 수 :'+decideCnt);
+                // console.log('전날 확진자 :'+decideCntpre);
+                // // console.log('사망률 :'+(deathCnt/decideCnt));
                 var percent = (deathCnt/decideCnt);
                
                 //그래프에 사용할 데이터
@@ -201,14 +201,6 @@
                   console.log("3일전 확진자 : "+threedayagoDecideCnt);
                   console.log("3일전 사망자 : "+threedayagoDeathCnt)
 
-                  //화면에 표시할 데이터
-                  console.log('날짜 :'+createDt);
-                  console.log('누적 사망자 수 :'+deathCnt);
-                  console.log('누적 확진자 수 :'+decideCnt);
-                  console.log('전날 확진자 :'+decideCntpre);
-                  console.log('사망률 :'+(deathCnt/decideCnt));
-                  var percent = (deathCnt/decideCnt);
-
                 // var html = 
                 $(".content").append("<p>"+createDt.substring(0,10)+"</p>"); //날짜
                 $(".definite").append("<p>"+Number(decideCnt).toLocaleString('ko-KR')+"명"+"</p>"); //누적 확진자
@@ -216,8 +208,8 @@
                 $(".definye").append("<p>"+Number((decideCnt-decideCntpre)).toLocaleString('ko-KR')+"명"+"</p>"); //전날 확진자
                 $(".deathye").append("<p>"+Number((deathCnt-deathCntpre)).toLocaleString('ko-KR')+"명"+"</p>") //전날 사망자
                 $(".pecent").append("<p>"+percent.toFixed(3)+"%"+"</p>") //사망률
-                console.log(deathCntpre);
-                console.log("하루 확진자 : "+(deathCnt-deathCntpre));
+                // console.log(deathCntpre);
+                // console.log("하루 확진자 : "+(deathCnt-deathCntpre));
               });
             },
             error : function (){
