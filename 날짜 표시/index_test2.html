@@ -103,7 +103,7 @@
       //처음 사이트를 실행했을 때 실행되는 함수들
       hello();
       function hello() {
-        console.log("hello world");
+        // console.log("hello world");
       }
 
       // 오늘 날짜 기준으로 존재하는 년도와 월의 option 태그 추가
@@ -158,24 +158,25 @@
         // new Date(2022,1,0) = 22/01/31, new Date(2022,1,1) = 22/02/01
         // month는 0부터 시작한다. 따라서 new Date(2022,0,1) = 22/01/01
         var dayindex_len = document.getElementById("day").length;
-        console.log(day);
-        console.log(dayindex_len);
+        // console.log(day);
+        // console.log(dayindex_len);
         if (day > dayindex_len) {
           for (var i = 1; i <= day; i++) {
-              document.getElementById("day").options[i - 1] = new Option(
-                i,
-                ("00" + i).slice(-2)
-              ); 
+            document.getElementById("day").options[i - 1] = new Option(
+              i,
+              ("00" + i).slice(-2)
+            );
           }
-        }else if(day < dayindex_len){ // lastday() 함수가 실행될 때마다 day가 바뀌는데 기존에 있던 day의 길이보다 day가 작다면 그 차이만큼 지워주는 로직
-          for(var i = dayindex_len; i >= day; i--){
-              document.getElementById('day').options[i]=null;
+        } else if (day < dayindex_len) {
+          // lastday() 함수가 실행될 때마다 day가 바뀌는데 기존에 있던 day의 길이보다 day가 작다면 그 차이만큼 지워주는 로직
+          for (var i = dayindex_len; i >= day; i--) {
+            document.getElementById("day").options[i] = null;
           }
         }
-        $('#day').val(preday).prop('selected', true);
+        $("#day").val(preday).prop("selected", true);
       }
-      var todayDate = (new Date()).getDate();
-      $('#day').val(todayDate).prop('selected', true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
+      var todayDate = new Date().getDate();
+      $("#day").val(todayDate).prop("selected", true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
     </script>
     <script>
       var totalDate;
