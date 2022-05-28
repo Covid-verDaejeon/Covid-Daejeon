@@ -4,36 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <title>CORONA LIVE</title>
+    <link rel="stylesheet" href="style.css">\
+    <link rel="stylesheet" href="style.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<title>CORONA LIVE</title>
   </head>
   <body>
     <div class="container">
+      <div class="title">
+        <div class="logo">CORONA LIVE</div>
+        <div class="git"><i class="fa-brands fa-github"></i><p>Github</p></div>
+      </div>
       <div class="covidbox">
       <div class="header">
         <!-- div.logo -->
         <div class="side-nav">
           <div class="test" id="id"></div>
           <div class="test2" id="test"></div>
-          <ul class="nav-links">
-            <li>
-              <a></i>CORONA LIVE</a>
-            </li>
-
-            <li>
-              <a href="#">대한민국</a>
-            </li>
-            <li id="git">
-              <div class="video">
-                <p>Git Hub</p>
-                <div class="pop-up" id="element_to_pop_up">
-                  <a class="b-close"><i style="position: relative; left: 3px; bottom: 4px;"
-                          class="fa-solid fa-circle-xmark"></i></a>
-                 <p>내용추가</p>
-                  </div>
-                  </div>
-            </li>
-          </ul>
         </div>
       </div>
      <div class="content-wrap">
@@ -140,6 +132,50 @@
      </div>
     </div>
     </div>
+    <div class="git-card">
+      <div class="card-item">
+        <h2>유영준</h2>
+        <ul>
+          <li><i class="fa-brands fa-github"></i><a href="#">Github</a></li>
+          <li>Email :</li>
+          <li>starter</li>
+          <li>starter</li>
+        </ul>
+        
+      </div>
+      <div class="card-item">
+        <h2>이승섭</h2>
+        <ul>
+          <li><i class="fa-brands fa-github"></i><a href="#">Github</a></li>
+          <li>Email :</li>
+          <li>starter</li>
+          <li>starter</li>
+        </ul>
+        
+      </div>
+      <div class="card-item">
+        <h2>이상협</h2>
+        <ul>
+          <li><i class="fa-brands fa-github"></i><a href="#">Github</a></li>
+          <li>Email :</li>
+          <li>starter</li>
+          <li>starter</li>
+        </ul>
+        
+      </div>
+      <div class="card-item">
+        <h2>이규성</h2>
+        <ul>
+          <li><i class="fa-brands fa-github"></i><a href="#">Github</a></li>
+          <li>Email :  97gyusung@gmail.com</li>
+          <li>starter</li>
+          <li>starter</li>
+        </ul>
+        
+      </div>
+    </div>
+
+    <script src="app.js"></script>
     <script
     src="https://kit.fontawesome.com/ec2e6610a2.js"
     crossorigin="anonymous"
@@ -202,7 +238,7 @@
                   console.log("3일전 사망자 : "+threedayagoDeathCnt)
 
                 // var html = 
-                $(".content").append("<p>"+createDt.substring(0,10)+"</p>"); //날짜
+                $(".content").append("   <p>"+createDt.substring(0,10)+ ' ' +"</p>" ); //날짜
                 $(".definite").append("<p>"+Number(decideCnt).toLocaleString('ko-KR')+"명"+"</p>"); //누적 확진자
                 $(".death").append("<p>"+Number(deathCnt).toLocaleString('ko-KR')+"명"+"</p>"); //누적 사망자
                 $(".definye").append("<p>"+Number((decideCnt-decideCntpre)).toLocaleString('ko-KR')+"명"+"</p>"); //전날 확진자

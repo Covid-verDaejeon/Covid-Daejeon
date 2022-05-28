@@ -1,3 +1,5 @@
+
+
 body {
   background: url(pexels-freestocksorg-449751.jpg);
   background-size: cover;
@@ -7,22 +9,52 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Gowun Batang', 'Tiro Devanagari Hindi' ,serif;
+  
+
 }
-.covidbox {
+
+.container {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: center;
 }
+.title {
+  margin-top: 50px;
+  margin-left: 15px;
+  position: relative;
+}
+.logo {
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 18px 0 #0000002c;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.git {
+  text-align: center;
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 18px 0 #0000002c;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 18px;
+}
+
+
 .content-wrap {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 15%;
+  padding: 10px;
+  
 }
 .row1 {
-  display: flex;
-  position: relative;
   left: 5%;
+  position: relative;
+  
+ 
   /* top: -45%; */
   margin-top: 50px;
   flex-direction: row;
@@ -34,6 +66,8 @@ body {
 .row2 {
   display: flex;
   position: relative;
+  justify-content: center;
+  align-content: center;
   left: 5%;
   /* top: -50%; */
   margin-top: 50px;
@@ -41,6 +75,17 @@ body {
   box-shadow: 0px 0px 18px 0 #0000002c;
   border-radius: 15px;
   padding: 50px;
+  font-size: 25px;
+}
+.content p {
+  position: relative;
+  /* left: 85%; */
+  font-size: 30px;
+}
+.box p {
+  font-size: 25px;
+  position: relative;
+  /* margin-left: 30px; */
 }
 .row3 {
   /* display: flex; */
@@ -57,11 +102,14 @@ body {
   text-align: center;
 }
 .row3-box1 {
-  text-align: center;
   display: flex;
+  justify-content: center;
 }
 .row3-box1 select {
   margin: 5%;
+  border: none;
+  padding: 15px;
+  
 }
 .row3-box2 {
   display: flex;
@@ -87,8 +135,8 @@ body {
 .box p {
   font-size: 25px;
   position: relative;
-  left: 50%;
-  margin-left: 30px;
+  
+ 
 }
 .definite p {
   font-size: 20px;
@@ -126,8 +174,8 @@ body {
 }
 .content p {
   position: relative;
-  left: 85%;
   font-size: 30px;
+  text-align: center;
 }
 /*nav 관련*/
 .nav-links {
@@ -153,4 +201,31 @@ body {
 .nav-links li a i {
   font-size: 22px;
   margin-right: 20px;
+}
+.card-item {
+  width: 250px;
+  box-shadow: 0px 0px 18px 0 #0000002c;
+  border-radius: 15px;
+  
+}
+.git-card {
+  display: flex;
+  justify-content: space-around;
+  display: none;
+  
+}
+.git-card ul {
+  list-style: none;
+}
+.git-card  li {
+  list-style: none;
+  text-align: center;
+  padding: 15px;
+}
+.git-card h2 {
+  text-align: center;
+}
+.git-card a {
+  text-decoration: none;
+  color: #000;
 }
