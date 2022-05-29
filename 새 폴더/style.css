@@ -210,14 +210,23 @@ body {
 }
 .git-card {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content:space-between;
+  width: 100%;
+}
+.card-item {
+  margin-right: 25px;
+  margin-top: 15px;
+  left: 5%;
   display: none;
   
 }
 .git-card ul {
   list-style: none;
+  margin-left: 15px;
 }
 .git-card  li {
+  margin: 15px;
   list-style: none;
   text-align: center;
   padding: 15px;
@@ -228,4 +237,8 @@ body {
 .git-card a {
   text-decoration: none;
   color: #000;
+}
+
+.show {
+  display: block;
 }

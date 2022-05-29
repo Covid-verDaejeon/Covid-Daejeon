@@ -1,15 +1,14 @@
-let mainBtn = document.querySelector('.logo');
-let mainBtnBox = document.querySelector('.content-wrap')
-let gitBtn = document.querySelector('.git');
-let gitCard = document.querySelector('.git-card'); 
+let logo = document.querySelector('.logo')
+let gitBtn = document.querySelector('.git')
 
+logo.onclick = function() {
+  document.querySelector('.git-card').classList.remove('card-item');
+  document.querySelector('.content-wrap').classList.add(' show')
 
-mainBtn.onclick =  function(){
-  gitCard.style.display = "none" ;
-  mainBtn.style.display = 'block';
 }
 
 gitBtn.onclick = function() {
-  gitCard.style.display = "block" ;
-  mainBtnBox.style.display = "none" ;
+  document.querySelector('.git-card').classList.add('card-item');
+  document.querySelector('.content-wrap').classList.remove('show');
 }
+
