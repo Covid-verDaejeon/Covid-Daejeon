@@ -32,6 +32,7 @@ body {
   padding: 20px;
   font-size: 18px;
   margin-bottom: 15px;
+  color: #808080;
 }
 .git {
     text-align: center;
@@ -39,8 +40,10 @@ body {
     box-shadow: 0px 0px 18px 0 #0000002c;
     border-radius: 15px;
     padding: 20px;
-    font-size: 18px;
+    font-size: 25px;
+    color: #808080;
 }
+
 .confirmedCase {
   margin-top: 15px;
   text-align: center;
@@ -55,7 +58,7 @@ body {
 }
 
 .confirmedCase a {
-  color: #000;
+  color: #808080;
   text-decoration: none;
 }
 
