@@ -100,57 +100,58 @@
     ></script>
     <script src="jquery.bpopup-0.10.0.min.js"></script>
     <script>
-      //처음 사이트를 실행했을 때 실행되는 함수들
-      hello();
-      function hello() {
-        // console.log("hello world");
-      }
-
-      // 오늘 날짜 기준으로 존재하는 년도와 월의 option 태그 추가
-      var start_year = "2020"; // 시작 년도
       var today = new Date(); // 오늘 날짜 Date 포맷으로 변환
-      var today_year = today.getFullYear(); // 오늘 날짜의 년도, 2022
-      var index = 0;
-      for (var y = start_year; y <= today_year; y++) {
-        // 시작년도부터 현재년도까지 option태그 추가
-        if (y == today.getFullYear()) {
-          document.getElementById("year").options[index] = new Option(
-            y,
-            y,
-            true,
-            true
-          ); // index는 0부터 시작한다
-        } else {
-          document.getElementById("year").options[index] = new Option(y, y);
-        }
-        // id가 year인 select 태그에 앞 y를 text로 가지고 뒤 y를 value로 가지는 option태그 추가
-        index++;
-      }
-      for (var m = 1; m <= 12; m++) {
-        // 월(달) option 태그 추가
-        if (m == today.getMonth() + 1) {
-          document.getElementById("month").options[m - 1] = new Option(
-            m,
-            ("00" + m).slice(-2),
-            true,
-            true
-          );
-          // m이 오늘 날짜에 해당하는 달이라면 true => selected 속성을 준다.
-        } else {
-          document.getElementById("month").options[m - 1] = new Option(
-            m,
-            ("00" + m).slice(-2)
-          );
+      var todayDate = today.getDate(); // 오늘의 일자
+
+      //처음 사이트를 실행했을 때 실행되는 함수들
+      giveYearOption(); // 오늘 날짜 기준으로 존재하는 연도를 option 태그로 추가하고 오늘 날짜의 연도에 selected
+      giveMonthOption(); // 선택한 연도를 기준으로 존재하는 월을 option 태그로 추가하고 오늘 날짜의 월을 selected
+      lastday(); // 선택한 연도와 월을 기준으로 마지막 일을 구하는 함수
+      $("#day").val(("00"+todayDate).slice(-2)).prop("selected", true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
+
+      function giveYearOption(){
+        var start_year = "2020";
+        var today_year = today.getFullYear(); // 오늘 날짜의 년도, 2022
+        var index = 0;
+        for (var y = start_year; y <= today_year; y++) {
+          if (y == today.getFullYear()) {
+            document.getElementById("year").options[index] = new Option(
+              y,
+              y,
+              true,
+              true
+            );
+          } else {
+            document.getElementById("year").options[index] = new Option(y, y);
+          }
+          // new Option(x, y) <= text는 x, value는 y를 가지는 option 태그 추가
+          index++;
         }
       }
-
-      var preday;
-      lastday(); // 아래 함수 실행
-
-      // 선택한 년도와 월에 따라 마지막 날자를 구하는 함수
+      
+      function giveMonthOption(){
+        for (var m = 1; m <= 12; m++) {
+          // 월(달) option 태그 추가
+          if (m == today.getMonth() + 1) {
+            document.getElementById("month").options[m - 1] = new Option(
+              m,
+              ("00" + m).slice(-2),
+              true,
+              true
+            );
+            // m이 오늘 날짜에 해당하는 달이라면 true => selected 속성을 준다.
+          } else {
+            document.getElementById("month").options[m - 1] = new Option(
+              m,
+              ("00" + m).slice(-2)
+            );
+          }
+        }
+      }
+      
       function lastday() {
-        preday = document.getElementById("day").value;
-        // $("#day").children().remove(); // 오늘 날짜가 기본으로 들어있기 때문에 만들어진 day를 지우고 새로 만듦
+        var prefixedDay = document.getElementById("day").value; // lastday를 실행하기 이전에 선택된 일을 prefixedDay에 담음
+
         var Year = document.getElementById("year").value;
         var Month = document.getElementById("month").value;
         var day = new Date(new Date(Year, Month, 0)).getDate();
@@ -158,8 +159,6 @@
         // new Date(2022,1,0) = 22/01/31, new Date(2022,1,1) = 22/02/01
         // month는 0부터 시작한다. 따라서 new Date(2022,0,1) = 22/01/01
         var dayindex_len = document.getElementById("day").length;
-        // console.log(day);
-        // console.log(dayindex_len);
         if (day > dayindex_len) {
           for (var i = 1; i <= day; i++) {
             document.getElementById("day").options[i - 1] = new Option(
@@ -173,10 +172,9 @@
             document.getElementById("day").options[i] = null;
           }
         }
-        $("#day").val(preday).prop("selected", true);
+        $("#day").val(prefixedDay).prop("selected", true); // 직전에 선택된 일에 selected
       }
-      var todayDate = new Date().getDate();
-      $("#day").val(todayDate).prop("selected", true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
+      
     </script>
     <script>
       var totalDate;
