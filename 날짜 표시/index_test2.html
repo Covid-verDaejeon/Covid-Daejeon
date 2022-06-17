@@ -20,7 +20,7 @@
               </li>
 
               <li>
-                <a href="#">대한민국</a>
+                <p href="#">대한민국</p>
               </li>
               <li id="git">
                 <!-- <div class="video"> -->
@@ -107,9 +107,11 @@
       giveYearOption(); // 오늘 날짜 기준으로 존재하는 연도를 option 태그로 추가하고 오늘 날짜의 연도에 selected
       giveMonthOption(); // 선택한 연도를 기준으로 존재하는 월을 option 태그로 추가하고 오늘 날짜의 월을 selected
       lastday(); // 선택한 연도와 월을 기준으로 마지막 일을 구하는 함수
-      $("#day").val(("00"+todayDate).slice(-2)).prop("selected", true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
+      $("#day")
+        .val(("00" + todayDate).slice(-2))
+        .prop("selected", true); // 최초에 lastday()가 실행될 때 오늘 날짜의 일자에 selected 속성을 줌
 
-      function giveYearOption(){
+      function giveYearOption() {
         var start_year = "2020";
         var today_year = today.getFullYear(); // 오늘 날짜의 년도, 2022
         var index = 0;
@@ -128,8 +130,8 @@
           index++;
         }
       }
-      
-      function giveMonthOption(){
+
+      function giveMonthOption() {
         for (var m = 1; m <= 12; m++) {
           // 월(달) option 태그 추가
           if (m == today.getMonth() + 1) {
@@ -148,7 +150,7 @@
           }
         }
       }
-      
+
       function lastday() {
         var prefixedDay = document.getElementById("day").value; // lastday를 실행하기 이전에 선택된 일을 prefixedDay에 담음
 
@@ -174,7 +176,6 @@
         }
         $("#day").val(prefixedDay).prop("selected", true); // 직전에 선택된 일에 selected
       }
-      
     </script>
     <script>
       var totalDate;
